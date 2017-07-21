@@ -1,0 +1,122 @@
+<template>
+  <div id="app">
+    <b-navbar toggleable type="inverse" variant="success">
+
+      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
+
+      <b-link class="navbar-brand" to="#">
+        <span>Vue BS Drawer Example</span>
+      </b-link>
+
+      <b-collapse is-nav id="nav_collapse">
+
+        <b-nav is-nav-bar>
+          <b-nav-item>Support</b-nav-item>
+          <b-nav-item>Docs</b-nav-item>
+          <b-nav-item>Contact Us</b-nav-item>
+        </b-nav>
+
+        <b-nav is-nav-bar class="ml-auto">
+
+          <!-- Navbar dropdowns -->
+          <b-nav-item-dropdown text="Lang" right>
+            <b-dropdown-item to="#">EN</b-dropdown-item>
+            <b-dropdown-item to="#">ES</b-dropdown-item>
+            <b-dropdown-item to="#">RU</b-dropdown-item>
+            <b-dropdown-item to="#">FA</b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown right>
+
+            <!-- Using button-content slot -->
+            <template slot="button-content">
+              <span style="font-weight: bold;">User</span>
+            </template>
+
+            <b-dropdown-item to="#">Profile</b-dropdown-item>
+            <b-dropdown-item to="#">Signout</b-dropdown-item>
+          </b-nav-item-dropdown>
+
+        </b-nav>
+      </b-collapse>
+    </b-navbar>
+    <div class="container-fluid">
+      <div class="row">
+        <bs-drawer v-on:bs-drawer-opened="closeRight" :showDrawer="true"
+          ref="leftDrawer"
+          side="left"
+          :openOnLoad="false"
+          :showToggleBtn="true"
+          :btnTop="15"
+          bg="transparent"
+          bgBtn=""
+          sidebar="md"
+          class="col-6 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
+            <b-card class="ml-3 my-3" header="Sidebar Nav">
+              <b-nav vertical>
+                <b-nav-item active>Active</b-nav-item>
+                <b-nav-item>Link</b-nav-item>
+                <b-nav-item>Another Link</b-nav-item>
+                <b-nav-item disabled>Disabled</b-nav-item>
+              </b-nav>
+            </b-card>
+        </bs-drawer>
+
+        <div class="col-xs-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2">
+          <router-view></router-view>
+        </div>
+
+        <bs-drawer
+          ref="rightDrawer"
+          v-on:bs-drawer-opened="closeLeft"
+          side="right"
+          :showDrawer="false"
+          class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-2 bs-drawer__animate">
+              <b-nav vertical>
+                <b-nav-item active>Active</b-nav-item>
+                <b-nav-item>Link</b-nav-item>
+                <b-nav-item>Another Link</b-nav-item>
+                <b-nav-item disabled>Disabled</b-nav-item>
+              </b-nav>
+        </bs-drawer>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app',
+  methods: {
+    toggle () {
+      this.leftShown = !this.leftShown
+    },
+    closeRight () {
+      this.$refs.rightDrawer.closeDrawer()
+      this.$refs.rightDrawer2.closeDrawer()
+    },
+    closeLeft () {
+      this.$refs.leftDrawer.closeDrawer()
+    }
+  }
+}
+</script>
+
+<style>
+body {
+  background-color: #eed;
+}
+.container-fluid {
+  padding-top: 2rem;
+}
+.bs-drawer__left {
+  padding-top: 5rem;
+}
+.bs-drawer__right {
+  padding-top: 55px;
+}
+.bs-drawer__nav-container-right {
+  padding: 1rem;
+}
+</style>
