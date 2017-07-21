@@ -6,13 +6,17 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+
 import VueBsDrawer from './../../../dist/vue-bs-drawer.min.js'
 import './../../../dist/vue-bs-drawer.min.css'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
-Vue.component('bs-drawer', VueBsDrawer)
+Vue.component('icon', Icon)
 
+Vue.component('bs-drawer', VueBsDrawer)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

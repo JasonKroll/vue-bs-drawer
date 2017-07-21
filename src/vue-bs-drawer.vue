@@ -8,7 +8,12 @@
       </div>
       <div v-if="showToggleBtn" class="bs-drawer__btn-container" :class="`bs-drawer__btn-container-${side}`">
         <button class="bs-drawer__btn" :class="hiddenBtnClass" @click="toggleOpen" :style="btnCustomStyle">
-          {{btnText}}
+          <slot v-if="open" name="open">
+            {{btnText}}
+          </slot>
+          <slot v-else name="closed">
+            {{btnText}}
+          </slot>
         </button>
       </div>
     </div>

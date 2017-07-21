@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable type="inverse" variant="success">
+    <b-navbar toggleable type="inverse" variant="success" sticky="true">
 
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
@@ -80,6 +80,12 @@
                 <b-nav-item disabled>Disabled</b-nav-item>
               </b-nav>
               <b-button @click="toggleStyle" size="sm">Button styles</b-button>
+              <span slot="open">
+                <icon :class="{chevron: styleIndex === 3}" name="chevron-right"></icon>
+              </span>
+              <span slot="closed">
+                <icon :class="{chevron: styleIndex === 3}" name="chevron-left"></icon>
+              </span>
         </bs-drawer>
 
       </div>
@@ -96,16 +102,28 @@ export default {
         {},
         {
           background: 'rgba(4, 80, 0, 0.4)',
-          padding: '5px 5px',
+          padding: '5px',
+          paddingTop: '15px',
+          paddingBottom: '10px',
           top: '70px'
         },
         {
           background: 'rgba(150, 5, 0, 0.2)',
           padding: '0 5px',
-          marginTop: '56px',
+          marginTop: '54px',
           marginRight: '15px',
           height: '100%',
           top: '0'
+        },
+        {
+          background: 'rgba(4, 80, 0, 0.4)',
+          // textAlign: 'center',
+          verticalAlign: 'middle',
+          padding: '0',
+          height: '40px',
+          borderRadius: '0',
+          borderBottomLeftRadius: '40px',
+          borderTopLeftRadius: '40px'
         }
       ],
       styleIndex: 0
@@ -123,7 +141,7 @@ export default {
       this.$refs.leftDrawer.closeDrawer()
     },
     toggleStyle () {
-      this.styleIndex === 2
+      this.styleIndex === 3
         ? this.styleIndex = 0
         : this.styleIndex += 1
     }
@@ -142,9 +160,15 @@ body {
   padding-top: 5rem;
 }
 .bs-drawer__right {
-  padding-top: 56px;
+  // margin-top: 54px;
 }
 .bs-drawer__nav-container-right {
-  padding: 1rem;
+  padding: 2rem;
+  padding-top: 5rem;
+}
+.chevron {
+  margin-left: 5px;
+  margin-bottom: 1px;
+  vertical-align: middle;
 }
 </style>
