@@ -47,7 +47,7 @@
           side="left"
           :openOnLoad="false"
           :showToggleBtn="true"
-          :btnTop="15"
+          :btnTop="17"
           bg="transparent"
           bgBtn=""
           sidebar="md"
