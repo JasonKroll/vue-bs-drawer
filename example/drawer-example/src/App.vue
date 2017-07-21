@@ -51,7 +51,7 @@
           bg="transparent"
           bgBtn=""
           sidebar="md"
-          class="col-6 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
+          class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
             <b-card class="ml-3 my-3" header="Sidebar Nav">
               <b-nav vertical>
                 <b-nav-item active>Active</b-nav-item>
@@ -62,7 +62,7 @@
             </b-card>
         </bs-drawer>
 
-        <div class="col-xs-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2">
+        <div class="px-4 col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2">
           <router-view></router-view>
         </div>
 
@@ -71,13 +71,15 @@
           v-on:bs-drawer-opened="closeLeft"
           side="right"
           :showDrawer="false"
-          class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-2 bs-drawer__animate">
+          :btnStyle="rightBtnStyles[styleIndex]"
+          class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-2 bs-drawer__animate">
               <b-nav vertical>
                 <b-nav-item active>Active</b-nav-item>
                 <b-nav-item>Link</b-nav-item>
                 <b-nav-item>Another Link</b-nav-item>
                 <b-nav-item disabled>Disabled</b-nav-item>
               </b-nav>
+              <b-button @click="toggleStyle" size="sm">Button styles</b-button>
         </bs-drawer>
 
       </div>
@@ -88,6 +90,27 @@
 <script>
 export default {
   name: 'app',
+  data () {
+    return {
+      rightBtnStyles: [
+        {},
+        {
+          background: 'rgba(4, 80, 0, 0.4)',
+          padding: '5px 5px',
+          top: '70px'
+        },
+        {
+          background: 'rgba(150, 5, 0, 0.2)',
+          padding: '0 5px',
+          marginTop: '56px',
+          marginRight: '15px',
+          height: '100%',
+          top: '0'
+        }
+      ],
+      styleIndex: 0
+    }
+  },
   methods: {
     toggle () {
       this.leftShown = !this.leftShown
@@ -98,6 +121,11 @@ export default {
     },
     closeLeft () {
       this.$refs.leftDrawer.closeDrawer()
+    },
+    toggleStyle () {
+      this.styleIndex === 2
+        ? this.styleIndex = 0
+        : this.styleIndex += 1
     }
   }
 }
@@ -108,13 +136,13 @@ body {
   background-color: #eed;
 }
 .container-fluid {
-  padding-top: 2rem;
+  padding-top: 56px;
 }
 .bs-drawer__left {
   padding-top: 5rem;
 }
 .bs-drawer__right {
-  padding-top: 55px;
+  padding-top: 56px;
 }
 .bs-drawer__nav-container-right {
   padding: 1rem;

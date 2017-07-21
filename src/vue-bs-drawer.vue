@@ -7,7 +7,7 @@
         </slot>
       </div>
       <div v-if="showToggleBtn" class="bs-drawer__btn-container" :class="`bs-drawer__btn-container-${side}`">
-        <button class="bs-drawer__btn" :class="hiddenBtnClass" @click="toggleOpen" :style="btnStyle">
+        <button class="bs-drawer__btn" :class="hiddenBtnClass" @click="toggleOpen" :style="btnCustomStyle">
           {{btnText}}
         </button>
       </div>
@@ -37,20 +37,15 @@ export default {
       type: String,
       default: '#f5f5f5'
     },
-    bgBtn: {
-      type: String,
-      default: ''
-    },
     btnTop: {
-      type: Number,
-      default: 45
+      type: String,
+      default: '45%'
     },
     btnStyle: {
       type: Object,
       default () {
         return {
-          top: this.btnTop + '%',
-          backgroundColor: this.bgBtn
+          top: this.btnTop + '%'
         }
       }
     },
@@ -106,6 +101,15 @@ export default {
           return this.open ? '>' : '<'
         }
       }
+    },
+    btnCustomStyle () {
+      var style = this.btnStyle
+      if (Object.keys(this.btnStyle).indexOf('top') < 0) {
+        this.btnTop
+          ? style.top = this.btnTop
+          : '45%'
+      }
+      return style
     }
   },
   watch: {
