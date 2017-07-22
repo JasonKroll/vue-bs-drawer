@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable type="inverse" variant="success" sticky="true">
+    <b-navbar toggleable type="inverse" variant="success" :sticky="true">
 
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
@@ -47,9 +47,8 @@
           side="left"
           :openOnLoad="false"
           :showToggleBtn="true"
-          :btnTop="17"
+          btnTop="17"
           bg="transparent"
-          bgBtn=""
           sidebar="md"
           class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
             <b-card class="ml-3 my-3" header="Sidebar Nav">
@@ -117,7 +116,6 @@ export default {
         },
         {
           background: 'rgba(4, 80, 0, 0.4)',
-          // textAlign: 'center',
           verticalAlign: 'middle',
           padding: '0',
           height: '40px',

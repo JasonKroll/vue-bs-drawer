@@ -50,7 +50,7 @@ export default {
       type: Object,
       default () {
         return {
-          top: this.btnTop + '%'
+          top: this.btnTop
         }
       }
     },
