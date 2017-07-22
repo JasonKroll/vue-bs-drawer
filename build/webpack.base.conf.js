@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './demo/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,6 +32,7 @@ module.exports = {
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [resolve('src'), resolve('test')],
+        exclude: resolve('demo'),
         options: {
           formatter: require('eslint-friendly-formatter')
         }

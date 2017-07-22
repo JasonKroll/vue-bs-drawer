@@ -42,12 +42,12 @@
     </b-navbar>
     <div class="container-fluid">
       <div class="row">
-        <bs-drawer v-on:bs-drawer-opened="closeRight" :showDrawer="true"
+        <bs-drawer v-on:bs-drawer-opened="closeRight"
           ref="leftDrawer"
           side="left"
-          :openOnLoad="false"
+          :showDrawer="false"
           :showToggleBtn="true"
-          btnTop="17"
+          btnTop="120px"
           bg="transparent"
           sidebar="md"
           class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
