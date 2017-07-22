@@ -79,7 +79,7 @@
                 <b-nav-item disabled>Disabled</b-nav-item>
               </b-nav>
               <b-button @click="toggleStyle" size="sm">Button styles</b-button>
-              <span slot="open">
+              <span slot="opened">
                 <icon :class="{chevron: styleIndex === 3}" name="chevron-right"></icon>
               </span>
               <span slot="closed">
