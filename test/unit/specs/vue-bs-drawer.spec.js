@@ -40,6 +40,10 @@ describe('vue-bs-drawer.vue', () => {
     const btnContainer = vm.$el.querySelector('div.bs-drawer__btn-container-right')
     expect(btnContainer !== null)
       .to.equal(true)
+
+    const button = vm.$el.querySelector('button')
+    expect(button.className.indexOf('bs-drawer__btn-right') > 0)
+      .to.equal(true)
   })
 
   it('should have correct button class', () => {

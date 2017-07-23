@@ -47,7 +47,7 @@
           side="left"
           :showDrawer="false"
           :showToggleBtn="true"
-          btnTop="120px"
+          btnTop="195px"
           bg="transparent"
           sidebar="md"
           class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
@@ -71,6 +71,7 @@
           side="right"
           :showDrawer="false"
           :btnStyle="rightBtnStyles[styleIndex]"
+          :btnTop="0"
           class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-2 bs-drawer__animate">
               <b-nav vertical>
                 <b-nav-item active>Active</b-nav-item>
@@ -79,12 +80,7 @@
                 <b-nav-item disabled>Disabled</b-nav-item>
               </b-nav>
               <b-button @click="toggleStyle" size="sm">Button styles</b-button>
-              <span slot="opened">
-                <icon :class="{chevron: styleIndex === 3}" name="chevron-right"></icon>
-              </span>
-              <span slot="closed">
-                <icon :class="{chevron: styleIndex === 3}" name="chevron-left"></icon>
-              </span>
+
         </bs-drawer>
 
       </div>
@@ -100,15 +96,21 @@ export default {
       rightBtnStyles: [
         {},
         {
-          background: 'rgba(4, 80, 0, 0.4)',
-          padding: '5px',
-          paddingTop: '15px',
-          paddingBottom: '10px',
-          top: '70px'
+          top: '0',
+          bottom:'0',
+          marginTop: '54px',
+          width: '20px',
+          height: '100%',
+          borderRadius: '50%',
+          border: '0',
+          borderRadius: '0',
+          background: 'rgba(0, 0, 0, 0.2)',
+          fill: 'green'
         },
         {
           background: 'rgba(150, 5, 0, 0.2)',
           padding: '0 5px',
+          borderRadius: '0',
           marginTop: '54px',
           marginRight: '15px',
           height: '100%',
@@ -120,17 +122,13 @@ export default {
           padding: '0',
           height: '40px',
           borderRadius: '0',
-          borderBottomLeftRadius: '40px',
-          borderTopLeftRadius: '40px'
+          background: 'rgba(0, 0, 0, 0.2)',
         }
       ],
       styleIndex: 0
     }
   },
   methods: {
-    toggle () {
-      this.leftShown = !this.leftShown
-    },
     closeRight () {
       this.$refs.rightDrawer.closeDrawer()
       this.$refs.rightDrawer2.closeDrawer()
@@ -147,10 +145,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
 body {
   background-color: #eed;
 }
+
+
 .container-fluid {
   padding-top: 56px;
 }
@@ -164,9 +164,9 @@ body {
   padding: 2rem;
   padding-top: 5rem;
 }
-.chevron {
-  margin-left: 5px;
-  margin-bottom: 1px;
-  vertical-align: middle;
+.bs-drawer__btn {
+  width: 50px;
 }
+
+
 </style>

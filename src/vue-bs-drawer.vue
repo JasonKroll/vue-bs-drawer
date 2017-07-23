@@ -7,12 +7,20 @@
         </slot>
       </div>
       <div v-if="showToggleBtn" class="bs-drawer__btn-container" :class="`bs-drawer__btn-container-${side}`">
-        <button class="bs-drawer__btn" :class="hiddenBtnClass" @click="toggleOpen" :style="btnCustomStyle">
+        <button :class="[btnClass, open ? btnOpenClass : '' ]"  @click="toggleOpen" :style="btnCustomStyle">
           <slot v-if="open" name="opened">
-            {{btnText}}
+              <svg class="bs-drawer__svg" width="11.428571428571429"
+                height="16"
+                viewBox="0 0 1280 1792">
+                  <path d="M1171 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path> 
+              </svg>
           </slot>
           <slot v-else name="closed">
-            {{btnText}}
+              <svg class="bs-drawer__svg" width="11.428571428571429"
+                height="16"
+                viewBox="0 0 1280 1792">
+                  <path d="M1171 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path> 
+              </svg>
           </slot>
         </button>
       </div>
@@ -54,6 +62,14 @@ export default {
         }
       }
     },
+    btnMainClass: {
+      type: String,
+      default: 'bs-drawer__btn'
+    },
+    btnOpenClass: {
+      type: String,
+      default: 'bs-drawer__btn-open'
+    },
     showToggleBtn: {
       type: Boolean,
       default: true
@@ -83,8 +99,11 @@ export default {
     hiddenContentClass () {
       return `hidden-${this.sidebar}-down`
     },
-    hiddenBtnClass () {
-      return this.isSideBar ? `hidden-${this.sidebar}-up` : ''
+    btnSideClass () {
+      return `${this.btnMainClass}-${this.side}`
+    },
+    btnClass () {
+      return this.isSideBar ? `${this.btnMainClass} hidden-${this.sidebar}-up ${this.btnSideClass}` : `${this.btnMainClass} ${this.btnSideClass}`
     },
     contentClass () {
       var show = `bs-drawer__${this.sidebar}-show`
@@ -127,7 +146,15 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
+
+.rotate {
+  -webkit-transform: rotate(180deg) translate(5px, 0);
+  -ms-transform: rotate(180deg) translate(5px, 0);
+  -o-transform: rotate(180deg) translate(5px, 0);
+  -moz-transform: rotate(180deg) translate(5px, 0);
+  transform: rotate(180deg) translate(5px, 0);  
+}
 
 @media (min-width: 576px) {
   .row .bs-drawer__sm-show.bs-drawer__left.bs-drawer__sm-show {
@@ -148,10 +175,7 @@ export default {
       -moz-transform: translate(0,0);
       transform: translate(0,0);
   }
-  .row .bs-drawer.bs-drawer__left.bs-drawer__sm-show .bs-drawer__btn {
-  }
 }
-
 
 /* medium screen sizes*/ 
 @media (min-width: 768px) {
@@ -171,8 +195,6 @@ export default {
       -o-transform: translate(0,0);
       -moz-transform: translate(0,0);
       transform: translate(0,0);
-  }
-  .row .bs-drawer.bs-drawer__md-show.bs-drawer__left .bs-drawer__btn {
   }
 }
 
@@ -195,8 +217,6 @@ export default {
       -moz-transform: translate(0,0);
       transform: translate(0,0);
   }
-  .row .bs-drawer.bs-drawer__lg-show.bs-drawer__left .bs-drawer__btn {
-  }
 }
 
 /* extra large screen sizes*/ 
@@ -217,8 +237,6 @@ export default {
       -o-transform: translate(0,0);
       -moz-transform: translate(0,0);
       transform: translate(0,0);
-  }
-  .row .bs-drawer.bs-drawer__xl-show.bs-drawer__left .bs-drawer__btn {
   }
 }
 
@@ -259,22 +277,70 @@ export default {
   // border-left: 1px solid #eee;
 }
 
+////////////////
+//Button Styles
+//////////////// 
 .bs-drawer__btn {
-  background: rgba(0, 0, 0, 0.4);
-  // text-justify: center;
-  color: #eee;
-  width: 20px;
-  z-index: 1060;
-  margin: 0;
-  border-radius: 0;
-  // border: 0.1rem solid #f5f5f5;
-  border: 0;
-  padding: 20px 5px;
-  font-weight: bold;
   position: absolute;
-  transition: all 0.3s ease-out;
-  padding: auto;
+  top: 50%;
+  width: 20px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  border-radius: 0;
+  border-bottom-left-radius: 40px;
+  border-top-left-radius: 40px;
+  background: rgba(4, 80, 0, 0.4);
+}
 
+.bs-drawer__btn {
+  .bs-drawer__svg {
+    position: absolute;
+    fill: #fff;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    transition: all 0.5s ease-out;
+  }
+}
+
+.bs-drawer__btn-left {
+  border-radius: 0;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  .bs-drawer__svg {
+    -webkit-transform: rotate(180deg) translate(1px, 0);
+    -ms-transform: rotate(180deg) translate(1px, 0);
+    -o-transform: rotate(180deg) translate(1px, 0);
+    -moz-transform: rotate(180deg) translate(1px, 0);
+    transform: rotate(180deg) translate(1px, 0);  
+    width: 80%;
+    height: 60%;
+  }
+}
+
+.bs-drawer__btn-left.bs-drawer__btn-open {
+  .bs-drawer__svg {
+    -webkit-transform: rotate(0deg) translate(-2px, 0);
+    -ms-transform: rotate(0deg) translate(-2px, 0);
+    -o-transform: rotate(0deg) translate(-2px, 0);
+    -moz-transform: rotate(0deg) translate(-2px, 0);
+    transform: rotate(0deg) translate(-2px, 0);
+    width: 80%;
+    height: 60%;
+  }
+}
+.bs-drawer__btn-right.bs-drawer__btn-open {
+  .bs-drawer__svg {
+    -webkit-transform: rotate(180deg) translate(-2px, 0);
+    -ms-transform: rotate(180deg) translate(-2px, 0);
+    -o-transform: rotate(180deg) translate(-2px, 0);
+    -moz-transform: rotate(180deg) translate(-2px, 0);
+    transform: rotate(180deg) translate(-2px, 0);
+    width: 80%;
+    height: 60%;
+  }
 }
 
 .bs-drawer__btn:hover {

@@ -9,8 +9,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 
-import VueBsDrawer from './../dist/vue-bs-drawer.min.js'
-import './../dist/vue-bs-drawer.min.css'
+import VueBsDrawer from './../src/vue-bs-drawer'
+// import VueBsDrawer from './../dist/vue-bs-drawer.min.js'
+// import './../dist/vue-bs-drawer.min.css'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
