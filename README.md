@@ -1,4 +1,4 @@
-# VUE-BS-DRAWER
+# vue-bs-drawer
 
 Vue.js sidebar / drawer component using bootstrap 4 classes.
 
