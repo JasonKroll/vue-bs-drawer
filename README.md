@@ -1,6 +1,7 @@
 # VUE-BS-DRAWER
 
 Vue.js sidebar / drawer component using bootstrap 4 classes
+See [example here](https://jasonkroll.github.io/vue-bs-drawer/)
 
 ## Getting Started
 
