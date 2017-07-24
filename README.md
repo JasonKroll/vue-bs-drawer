@@ -104,6 +104,8 @@ e.g.
 Use the `sidebar=<size>` property to display as a responsive sidebar. Sizes include sm, md & lg.
 
 Then adjust your main content with the correct Bootstrap offset classes. E.g. for `size="md` and a `col-md-3` size, use an offset of `offset-md-3`.
+
+This will automatically hide your sidebar when the screen size is smaller than the Bootstrap `md` breakpoint.
 e.g.
 ```
 ...
