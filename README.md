@@ -35,7 +35,7 @@ Vue.component('bs-drawer', VueBsDrawer)
 
 or register locally in your .vue file
 
-Example
+#### Example
 ```
 <template>
   <div id='mycomponent'>>
@@ -44,6 +44,11 @@ Example
         <bs-drawer v-on:bs-drawer-opened="closeRight"
           ref="leftDrawer"
           side="left"
+          :showDrawer="false"
+          :showToggleBtn="true"
+          btnTop="195px"
+          bg="transparent"
+          sidebar="md"
           class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
           <!-- Add some nav elements here-->
         </bs-drawer>
@@ -56,6 +61,8 @@ Example
         <bs-drawer
           ref="rightDrawer"
           side="right"
+          :showDrawer="false"
+          :btnTop="0"
           class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-2 bs-drawer__animate">
           <!-- Add some nav elements here-->
         </bs-drawer>
@@ -82,6 +89,35 @@ export default {
 
 <style>
 </style>
+```
+#### Sizing
+Use standard Bootstrap `col-*` classes in the component to size the drawer.
+e.g.
+```
+<bs-drawer v-on:bs-drawer-opened="closeRight"
+  side="left"
+  class="col-10 col-sm-3 col-md-3 col-lg-2 bs-drawer__animate">
+  <!-- Add some nav elements here-->
+</bs-drawer>
+```
+#### Responsive Sidebar
+Use the `sidebar=<size>` property to display as a responsive sidebar. Sizes include sm, md & lg.
+
+Then adjust your main content with the correct Bootstrap offset classes. E.g. for `size="md` and a `col-md-3` size, use an offset of `offset-md-3`.
+e.g.
+```
+...
+<bs-drawer v-on:bs-drawer-opened="closeRight"
+  side="left"
+  sidebar="md"
+  class="col-10 col-sm-3 col-md-3 bs-drawer__animate">
+  <!-- Add some nav elements here-->
+</bs-drawer>
+<div class="px-4 col-12 col-md-9 col-lg-10 offset-md-3">
+  <!-- Main View here -->
+  <router-view></router-view>
+</div>
+...
 ```
 
 ## Contributing
