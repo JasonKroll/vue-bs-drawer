@@ -1,6 +1,6 @@
 {
   "name": "vue-bs-drawer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Vue.js sidebar drawer component using bootstrap 4 classes",
   "author": "krolly@gmail.com",
   "private": false,
