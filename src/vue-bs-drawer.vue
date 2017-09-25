@@ -103,7 +103,26 @@ export default {
       return `${this.btnMainClass}-${this.side}`
     },
     btnClass () {
-      return this.isSideBar ? `${this.btnMainClass} hidden-${this.sidebar}-up ${this.btnSideClass}` : `${this.btnMainClass} ${this.btnSideClass}`
+      // .d-none.d-md-block.d-xl-none (shows the element only on medium and large devices)
+      var hiddenClass = 'd-none d-block'
+      switch (this.sidebar) {
+        case 'sm':
+          hiddenClass = hiddenClass + ' d-sm-none'
+          break
+        case 'md':
+          hiddenClass = hiddenClass + ' d-md-none'
+          break
+        case 'lg':
+          hiddenClass = hiddenClass + ' d-lg-none'
+          break
+        case 'xl':
+          hiddenClass = hiddenClass + ' d-xl-none'
+          break
+        default:
+          break
+      }
+
+      return this.isSideBar ? `${this.btnMainClass} ${hiddenClass} hidden-${this.sidebar}-up ${this.btnSideClass}` : `${this.btnMainClass} ${this.btnSideClass}`
     },
     contentClass () {
       var show = `bs-drawer__${this.sidebar}-show`

@@ -61,7 +61,7 @@
             </b-card>
         </bs-drawer>
 
-        <div class="px-4 col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2">
+        <div class="px-4 col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2 ml-auto ">
           <router-view></router-view>
         </div>
 
