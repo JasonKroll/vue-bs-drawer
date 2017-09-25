@@ -380,6 +380,7 @@ export default {
 
 .bs-drawer__btn-container-right {
   float: left;
+  width: auto;
 }
 
 .bs-drawer__animate {
